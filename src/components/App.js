@@ -1,12 +1,30 @@
-import React from 'react';
-import '../css/App.css';
+import React, {Component} from 'react';
 
-function App() {
-  return (
-    <div>
-     this is app
-    </div>
-  );
+import {AddColourForm} from './AddColourForm'
+import {ColourList} from './ColourList'
+export class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            colours: []
+        }
+    }
+  render() {
+        const colours = this.state;
+
+        const log = (t, c) => {
+            alert(`New colour: ${t} ${c}`)
+        };
+
+      return(
+          <div className={'app'}>
+              <AddColourForm onNewColour={log}/>
+              <ColourList colours={{colours}}/>
+
+          </div>
+      )
+  }
 }
 
 export default App;
