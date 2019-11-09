@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 
 import {AddColourForm} from './AddColourForm'
-import {ColourList} from './ColourList'
-export class App extends Component {
+import {ColorList} from './ColorList'
+
+class App extends Component {
 
     constructor(props) {
         super(props);
@@ -10,21 +11,21 @@ export class App extends Component {
             colours: []
         }
     }
-  render() {
-        const colours = this.state;
+
+    render() {
+        const {colours} = this.state;
 
         const log = (t, c) => {
             alert(`New colour: ${t} ${c}`)
         };
 
-      return(
-          <div className={'app'}>
-              <AddColourForm onNewColour={log}/>
-              <ColourList colours={{colours}}/>
-
-          </div>
-      )
-  }
+        return (
+            <div className={'app'}>
+                <AddColourForm onNewColour={log}/>
+                <ColorList colours={colours}/>
+            </div>
+        )
+    }
 }
 
 export default App;
