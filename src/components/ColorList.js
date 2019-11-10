@@ -2,7 +2,7 @@ import React from 'react'
 
 import {Color} from './Color'
 
-export const ColorList = ({cols: colors = [], onRate = f => f, onRemove = f => f}) =>
+export const ColorList = ({colors = [], onRate = f => f, onRemove = f => f}) =>
     <div className='color-list'>
         {(colors.length === 0) ?
             <p>No Colours Listed. (Add a Color)</p> :

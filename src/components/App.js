@@ -3,17 +3,19 @@ import React, {Component} from 'react';
 import {AddColourForm} from './AddColourForm'
 import {ColorList} from './ColorList'
 
+import colorsFile from '../colorsFile'
+
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            colours: []
+            colors: colorsFile.colors
         }
     }
 
     render() {
-        const {colours} = this.state;
+        const {colors} = this.state;
 
         const log = (t, c) => {
             alert(`New colour: ${t} ${c}`)
@@ -22,7 +24,7 @@ class App extends Component {
         return (
             <div className={'app'}>
                 <AddColourForm onNewColour={log}/>
-                <ColorList colours={colours}/>
+                <ColorList colors={colors}/>
             </div>
         )
     }

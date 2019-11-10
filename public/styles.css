@@ -1,79 +1,183 @@
-html, body, #react-container {
-    height: 100%;
+html, body, div#react-container {
+    min-height: 100%;
+}
+
+h1 {
     margin: 0;
     padding: 0;
 }
 
-#react-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    background: linear-gradient(to bottom, white 0%, #e5e5e5 100%);
 }
 
-.star-rating {
+body div.app {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
 }
 
-.star {
+input {
+    outline: none;
+}
+
+form.add-color {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+form.add-color > :first-child {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+form.add-color input, form.add-color button {
+    margin: .5em;
+    padding: .25em;
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+
+form.add-color input[type="color"] {
+    padding: 0;
+    height: +2em;
+}
+
+form.add-color button {
+    background-color: green;
+    color: white;
+    border: none;
+}
+
+div.star {
     cursor: pointer;
-    width: 2em;
-    height: 2em;
-    background-color: grey;
-    -webkit-clip-path:
-            polygon(50% 0%, 63% 38%, 100% 38%,
-            69% 59%, 82% 100%, 50% 75%,
-            18% 100%, 31% 59%, 0% 38%, 37% 38%);
-    clip-path: polygon(50% 0%, 63% 38%,
-    100% 38%, 69% 59%, 82% 100%,
-    50% 75%, 18% 100%, 31% 59%,
-    0% 38%, 37% 38%);
+    height: 25px;
+    width: 25px;
+    margin: 2px;
+    float: left;
+    background-color: #7f7f7f;
+    -webkit-clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%);
+    clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%);
 }
 
-.star.selected {
+div.star.selected {
     background-color: red;
 }
 
-p {
+section.color {
+    box-shadow: 3px 3px 8px 1px #b2b2b2;
+    border: 2px solid #e5e5e5;
+    border-bottom-color: #7f7f7f;
+    border-right-color: #7f7f7f;
+    margin: 1em;
+    padding: 0;
+    -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
-    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    position: relative;
 }
 
-h1 {
+@media screen and (min-width: 700px) {
+    section.color {
+        -ms-flex-preferred-size: calc(50% - 2em - 4px);
+        flex-basis: calc(50% - 2em - 4px);
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    section.color {
+        -ms-flex-preferred-size: calc(33.33333% - 2em - 4px);
+        flex-basis: calc(33.33333% - 2em - 4px);
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    section.color {
+        -ms-flex-preferred-size: calc(25% - 2em - 4px);
+        flex-basis: calc(25% - 2em - 4px);
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    section.color {
+        -ms-flex-preferred-size: calc(16.66666% - 2em - 4px);
+        flex-basis: calc(16.66666% - 2em - 4px);
+    }
+}
+
+section.color h1 {
     font-family: Verdana, sans-serif;
     text-align: center;
     padding: .5em;
+    -ms-flex-preferred-size: calc(100% - 1em);
     flex-basis: calc(100% - 1em);
 }
 
-button {
+section.color button {
     position: absolute;
     top: .5em;
     right: .5em;
+    -ms-flex-preferred-size: calc(12% - 1em);
     flex-basis: calc(12% - 1em);
     text-align: right;
-@include fade-bg($light, $light-grey);
+    background: white;
+    background: linear-gradient(to bottom, white 0%, #e5e5e5 100%);
     padding: .75em;
     border-radius: .5px;
 }
 
-> div:last-child {
+section.color > div:last-child {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     width: 100%;
     margin-top: .5em;
 }
 
-div.color {
+section.color div.color {
     height: 100px;
+    -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
 }
 
-/*div.time-ago {*/
-/*    position: absolute;*/
-/*    bottom: .5em;*/
-/*    right: .5em;*/
-/*    font-family: monospace;*/
-/*    color: darken($light-grey, 40%);*/
-/*}*/
+section.color div.time-ago {
+    position: absolute;
+    bottom: .5em;
+    right: .5em;
+    font-family: monospace;
+    color: #7f7f7f;
+}
+
+div.color-list {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    text-align: center;
+    overflow: scroll;
+}
+
+
+
