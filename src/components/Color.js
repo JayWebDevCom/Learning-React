@@ -1,7 +1,8 @@
 import React from 'react';
 import {StarRating} from "./StarRating";
+import PropTypes from 'prop-types'
 
-export const Color = ({title, color, rating=0}, onRemove= f=>f, onRate= f=>f) =>
+export const Color = ({title, color, rating=0, onRemove=f=>f, onRate=f=>f}) =>
     <section className={'color'}>
         <h1>{title}</h1>
         <button onClick={onRemove}>X</button>
@@ -13,3 +14,11 @@ export const Color = ({title, color, rating=0}, onRemove= f=>f, onRate= f=>f) =>
             <StarRating starsSelected={rating} onRate={onRate} />
         </div>
     </section>;
+
+Color.propTypes = {
+    title: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    rating: PropTypes.number,
+    onRemove: PropTypes.func,
+    onRate: PropTypes.func
+};

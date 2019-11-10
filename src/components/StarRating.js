@@ -1,5 +1,6 @@
 import React from 'react';
 import {Star} from './Star'
+import PropTypes from 'prop-types'
 
 export const StarRating = ({starsSelected=0, totalStars=5, onRate=f=>f}) =>
     <div className={'star-rating'}>
@@ -11,3 +12,9 @@ export const StarRating = ({starsSelected=0, totalStars=5, onRate=f=>f}) =>
         )}
         <p>{starsSelected} of {totalStars} stars</p>
     </div>;
+
+StarRating.propTypes = {
+    starsSelected: PropTypes.number,
+    totalStars: PropTypes.number,
+    onRate: PropTypes.func
+};
