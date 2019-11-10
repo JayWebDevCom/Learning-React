@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {AddColourForm} from './AddColourForm'
 import {ColorList} from './ColorList'
-
+import {v4} from 'uuid';
 import colorsFile from '../colorsFile'
 
 class App extends Component {
@@ -11,20 +11,55 @@ class App extends Component {
         super(props);
         this.state = {
             colors: colorsFile.colors
-        }
+        };
+        this.addColor = this.addColor.bind(this);
+        this.rateColor = this.rateColor.bind(this);
+        this.removeColor = this.removeColor.bind(this);
     }
 
-    render() {
-        const {colors} = this.state;
+    addColor = (title, color) => {
+        console.log(v4());
+        const colors = [
+            ...this.state.colors,
+            {
+                id: v4(),
+                title,
+                color,
+                rating: 0
+            }
+        ];
+        this.setState({colors})
+    };
 
-        const log = (t, c) => {
-            alert(`New colour: ${t} ${c}`)
-        };
+    rateColor = (id, rating) => {
+        const colors = this.state.colors.map(color =>
+            (color.id !== id) ?
+                color :
+                {
+                    ...color,
+                    rating
+                }
+        );
+
+        this.setState({colors})
+    };
+
+    removeColor = (id) => {
+        const colors = this.state.colors.filter(
+            color => color.id !== id
+        );
+
+        this.setState({colors});
+    };
+
+    render() {
+        const {addColor, rateColor, removeColor} = this;
+        const {colors} = this.state;
 
         return (
             <div className={'app'}>
-                <AddColourForm onNewColour={log}/>
-                <ColorList colors={colors}/>
+                <AddColourForm onNewColour={addColor}/>
+                <ColorList colors={colors} onRate={rateColor} onRemove={removeColor}/>
             </div>
         )
     }
