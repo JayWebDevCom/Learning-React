@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 
 import {AddColourForm} from './AddColourForm'
 import {ColorList} from './ColorList'
 import {v4} from 'uuid';
 import colorsFile from '../colorsFile'
+import {Clock} from "./clock/Clock";
 
 class App extends Component {
 
@@ -53,14 +55,23 @@ class App extends Component {
     };
 
     render() {
+
         const {addColor, rateColor, removeColor} = this;
         const {colors} = this.state;
 
         return (
-            <div className={'app'}>
-                <AddColourForm onNewColour={addColor}/>
-                <ColorList colors={colors} onRate={rateColor} onRemove={removeColor}/>
-            </div>
+            <Router>
+                <Route exact path="/">
+                    <div className={'app'}>
+                        <Link to="/clock">Clock</Link>
+                        <AddColourForm onNewColour={addColor}/>
+                        <ColorList colors={colors} onRate={rateColor} onRemove={removeColor}/>
+                    </div>
+                </Route>
+                <Route exact path="/clock">
+                    <Clock/>
+                </Route>
+            </Router>
         )
     }
 }
