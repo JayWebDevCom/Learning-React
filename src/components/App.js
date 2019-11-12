@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Link, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 import {AddColourForm} from './AddColourForm'
 import {ColorList} from './ColorList'
+import {Home} from './Home'
 import {v4} from 'uuid';
 import colorsFile from '../colorsFile'
 import {Clock} from "./clock/Clock";
@@ -62,10 +63,9 @@ class App extends Component {
 
         return (
             <Router>
+                <Home/>
                 <Route exact path="/">
                     <div className={'app'}>
-                        <Link to="/clock">Clock</Link>
-                        <Link to="/members">Members</Link>
                         <AddColourForm onNewColour={addColor}/>
                         <ColorList colors={colors} onRate={rateColor} onRemove={removeColor}/>
                     </div>

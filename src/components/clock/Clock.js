@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
 
 export class Clock extends Component {
 
@@ -85,7 +84,6 @@ export class Clock extends Component {
     render() {
         return (
             <div>
-                <Link to="/">Home</Link>
                 <h2>The time is:</h2>
                 <div>
                     <h3>{this.state.time}</h3>
