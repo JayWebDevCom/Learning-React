@@ -6,6 +6,7 @@ import {ColorList} from './ColorList'
 import {v4} from 'uuid';
 import colorsFile from '../colorsFile'
 import {Clock} from "./clock/Clock";
+import {MemberList} from "./members/MemberList";
 
 class App extends Component {
 
@@ -64,12 +65,16 @@ class App extends Component {
                 <Route exact path="/">
                     <div className={'app'}>
                         <Link to="/clock">Clock</Link>
+                        <Link to="/members">Members</Link>
                         <AddColourForm onNewColour={addColor}/>
                         <ColorList colors={colors} onRate={rateColor} onRemove={removeColor}/>
                     </div>
                 </Route>
                 <Route exact path="/clock">
                     <Clock/>
+                </Route>
+                <Route exact path="/members">
+                    <MemberList/>
                 </Route>
             </Router>
         )
