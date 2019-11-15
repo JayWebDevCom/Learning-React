@@ -9,6 +9,7 @@ import colorsFile from '../colorsFile'
 import {Clock} from "./clock/Clock";
 import {MemberList} from "./members/MemberList";
 import {HiddenMessages} from "./HiddenMessages";
+import {CountryList} from "./CountryList";
 
 class App extends Component {
 
@@ -79,6 +80,9 @@ class App extends Component {
                 </Route>
                 <Route exact path="/hiddenMessages">
                     <HiddenMessages/>
+                </Route>
+                <Route exact path="/countryList">
+                    <CountryList/>
                 </Route>
             </Router>
         )

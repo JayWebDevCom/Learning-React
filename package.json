@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "nodemon": "^1.19.4",
     "prop-types": "15.6.0",
     "react": "^16.11.0",
