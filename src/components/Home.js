@@ -7,5 +7,6 @@ export const Home = () =>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/clock">Clock</Link></li>
             <li><Link to="/members">Members</Link></li>
+            <li><Link to="/hiddenMessages">Hidden Messages</Link></li>
         </ul>
     </div>;

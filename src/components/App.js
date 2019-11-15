@@ -8,6 +8,7 @@ import {v4} from 'uuid';
 import colorsFile from '../colorsFile'
 import {Clock} from "./clock/Clock";
 import {MemberList} from "./members/MemberList";
+import {HiddenMessages} from "./HiddenMessages";
 
 class App extends Component {
 
@@ -75,6 +76,9 @@ class App extends Component {
                 </Route>
                 <Route exact path="/members">
                     <MemberList/>
+                </Route>
+                <Route exact path="/hiddenMessages">
+                    <HiddenMessages/>
                 </Route>
             </Router>
         )
