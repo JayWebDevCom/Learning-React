@@ -9,5 +9,6 @@ export const Home = () =>
             <li><Link to="/members">Members</Link></li>
             <li><Link to="/hiddenMessages">Hidden Messages</Link></li>
             <li><Link to="/countryList">Country List</Link></li>
+            <li><Link to="/timeline">Timeline</Link></li>
         </ul>
     </div>;

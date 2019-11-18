@@ -84,6 +84,9 @@ class App extends Component {
                 <Route exact path="/countryList">
                     <CountryList/>
                 </Route>
+                <Route exact path="/timeline">
+                    {/*<Timeline/>*/}
+                </Route>
             </Router>
         )
     }
