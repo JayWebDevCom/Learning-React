@@ -10,5 +10,6 @@ export const Home = () =>
             <li><Link to="/hiddenMessages">Hidden Messages</Link></li>
             <li><Link to="/countryList">Country List</Link></li>
             <li><Link to="/timeline">Timeline</Link></li>
+            <li><Link to="/children">React Children</Link></li>
         </ul>
     </div>;
