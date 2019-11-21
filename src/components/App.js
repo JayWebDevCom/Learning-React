@@ -8,6 +8,8 @@ import {CountryList} from "./CountryList";
 import {ReactChildrenPresenter} from "./ReactChildrenPresenter";
 import {TimeLinePresenter} from "./TimeLinePresenter";
 import {ColorPresenter} from "./ColorPresenter";
+import {PeopleListPresenter} from "./PeopleListPresenter";
+import {CountryDropdownPresenter} from "./CountryDropdownPresenter";
 
 export default () =>
     <Router>
@@ -32,5 +34,11 @@ export default () =>
         </Route>
         <Route exact path="/children">
             <ReactChildrenPresenter/>
+        </Route>
+        <Route exact path="/randomUsers">
+            <PeopleListPresenter/>
+        </Route>
+        <Route exact path="/countryDropDown">
+            <CountryDropdownPresenter/>
         </Route>
     </Router>;
