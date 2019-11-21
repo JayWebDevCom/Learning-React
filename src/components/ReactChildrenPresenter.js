@@ -1,15 +1,16 @@
-import React, {Children} from 'react';
-import {ChildrenComp} from './ChildrenComp';
+import React from 'react';
+// import React, {Children} from 'react';
+// import {ChildrenComp} from './ChildrenComp';
 
 export const ReactChildrenPresenter = () => {
 
-    const age = 30;
-
-    const WhenTruthy = ({children}) =>
-        Children.only(children);
-
-    const WhenFalsy = ({children}) =>
-        Children.only(children);
+    // const age = 30;
+    //
+    // const WhenTruthy = ({children}) =>
+    //     Children.only(children);
+    //
+    // const WhenFalsy = ({children}) =>
+    //     Children.only(children);
 
     return ( <div>
             {/*<ChildrenComp ifTruthy={age > 29}>*/}
