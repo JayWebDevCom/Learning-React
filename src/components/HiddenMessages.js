@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {HiddenMessage} from './HiddenMessage'
+import {HiddenMessage as HiddenMessageWithClick} from './Expandable/HiddenMessage'
 
 export class HiddenMessages extends Component {
 
@@ -30,12 +31,21 @@ export class HiddenMessages extends Component {
     render() {
         const {messages, showing} = this.state;
         return (
-            <div className={'hidden-messages'}>
-                {messages.map((message, i) =>
-                    <HiddenMessage key={i} hide={i !== showing}>
-                        {message}
-                    </HiddenMessage>
-                )}
+            <div>
+                <div className={'hidden-messages'}>
+                    {messages.map((message, i) =>
+                        <HiddenMessage key={i} hide={i !== showing}>
+                            {message}
+                        </HiddenMessage>
+                    )}
+                </div>
+                <div className={'hidden-messages'}>
+                    {messages.map((message, i) =>
+                        <HiddenMessageWithClick key={i} hide={i !== showing}>
+                            {message}
+                        </HiddenMessageWithClick>
+                    )}
+                </div>
             </div>
         )
     }

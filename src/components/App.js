@@ -10,6 +10,7 @@ import {TimeLinePresenter} from "./TimeLinePresenter";
 import {ColorPresenter} from "./ColorPresenter";
 import {PeopleListPresenter} from "./PeopleListPresenter";
 import {CountryDropdownPresenter} from "./CountryDropdownPresenter";
+import {ExportedPopupButton} from "./Expandable/MenuButton";
 
 export default () =>
     <Router>
@@ -40,5 +41,8 @@ export default () =>
         </Route>
         <Route exact path="/countryDropDown">
             <CountryDropdownPresenter/>
+        </Route>
+        <Route exact path="/popupButton">
+            <ExportedPopupButton/>
         </Route>
     </Router>;

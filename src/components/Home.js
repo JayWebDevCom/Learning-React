@@ -13,5 +13,6 @@ export const Home = () =>
             <li><Link to="/children">React Children</Link></li>
             <li><Link to="/randomUsers">Random Users</Link></li>
             <li><Link to="/countryDropDown">Country Dropdown</Link></li>
+            <li><Link to="/popupButton">Popup Button</Link></li>
         </ul>
     </div>;
