@@ -3,14 +3,14 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import {Home} from './Home'
 import {Clock} from "./clock/Clock";
 import {MemberList} from "./members/MemberList";
-import {HiddenMessages} from "./HiddenMessages";
-import {CountryList} from "./CountryList";
-import {ReactChildrenPresenter} from "./ReactChildrenPresenter";
-import {TimeLinePresenter} from "./TimeLinePresenter";
-import {ColorPresenter} from "./ColorPresenter";
-import {PeopleListPresenter} from "./PeopleListPresenter";
-import {CountryDropdownPresenter} from "./CountryDropdownPresenter";
-import {ExportedPopupButton} from "./Expandable/MenuButton";
+import {HiddenMessages} from "./hideMessage/HiddenMessages";
+import {CountryList} from "./countries/CountryList";
+import {ReactChildrenPresenter} from "./children/ReactChildrenPresenter";
+import {TimeLinePresenter} from "./timeLine/TimeLinePresenter";
+import {ColorPresenter} from "./colourRating/ColorPresenter";
+import {PeopleListPresenter} from "./peopleList/PeopleListPresenter";
+import {CountryDropdownPresenter} from "./countries/CountryDropdownPresenter";
+import {ExportedPopupButton} from "./hideMessage/MenuButton";
 
 export default () =>
     <Router>

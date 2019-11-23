@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {HiddenMessage} from './HiddenMessage'
-import {HiddenMessage as HiddenMessageWithClick} from './Expandable/HiddenMessage'
+import {HiddenMessage as HiddenMessageWithClick} from './ShowHideMessage'
 
 export class HiddenMessages extends Component {
 

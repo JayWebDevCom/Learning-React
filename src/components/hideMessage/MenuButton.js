@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Expandable} from "./Expandable";
+import {Expandable} from "../HOC/Expandable";
 
 class MenuButton extends Component {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Expandable} from "./Expandable";
+import {Expandable} from "../HOC/Expandable";
 
 const ShowHideMessage = ({children, collapsed, expandCollapse}) =>
     <p onClick={expandCollapse}>

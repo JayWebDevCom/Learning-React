@@ -1,4 +1,4 @@
-import {DataComponent} from "./DataComponent";
+import {DataComponent} from "../HOC/DataComponent";
 import {PeopleList} from "./PeopleList";
 
 export const PeopleListPresenter =

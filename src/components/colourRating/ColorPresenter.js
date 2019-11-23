@@ -1,5 +1,5 @@
 import React from 'react';
-import colorsFile from "../colorsFile";
+import colorsFile from "./colorsFile"
 import {v4} from "uuid";
 import {AddColourForm} from "./AddColourForm";
 import {ColorList} from "./ColorList";

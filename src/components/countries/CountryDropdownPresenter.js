@@ -1,5 +1,5 @@
 import React from 'react';
-import {DataComponent} from "./DataComponent";
+import {DataComponent} from "../HOC/DataComponent";
 import {CountryNames} from "./CountryNames";
 
 const CountryDropdown =
