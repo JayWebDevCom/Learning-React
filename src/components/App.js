@@ -11,6 +11,7 @@ import {ColorPresenter} from "./colourRating/ColorPresenter";
 import {PeopleListPresenter} from "./peopleList/PeopleListPresenter";
 import {CountryDropdownPresenter} from "./countries/CountryDropdownPresenter";
 import {ExportedPopupButton} from "./hideMessage/MenuButton";
+import CountdownPresenter from "./countdown/CountdownPresenter";
 
 export default () =>
     <Router>
@@ -44,5 +45,8 @@ export default () =>
         </Route>
         <Route exact path="/popupButton">
             <ExportedPopupButton/>
+        </Route>
+        <Route exact path="/countdown">
+            <CountdownPresenter/>
         </Route>
     </Router>;
