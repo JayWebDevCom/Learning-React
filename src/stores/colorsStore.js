@@ -7,3 +7,8 @@ export const colorsStore = createStore(
     combineReducers({colors, sort}),
     colorsFileWithSort
 );
+
+const logState = () =>
+    console.log('new state', colorsStore.getState());
+
+colorsStore.subscribe(logState);
