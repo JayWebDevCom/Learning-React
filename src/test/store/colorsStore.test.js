@@ -2,6 +2,7 @@ import {colorsStore} from '../../stores/colorsStore';
 import {expect} from "chai";
 import colorsExpectedColors from '../../components/colourRating/colorsFileWithSort'
 import C from '../../constants/constants'
+import {colorActions} from '../../actions/colorActions'
 
 describe('colorsStore', () => {
 
@@ -47,5 +48,40 @@ describe('colorsStore', () => {
         expect(getRating(0)).to.equal(3);
         colorsStore.dispatch(action);
         expect(getRating(0)).to.equal(5);
+    });
+
+    it(`dispatches ${C.RATE_COLOR} action from colorActions`, () => {
+        const getRating = (index) =>
+            colorsStore.getState().colors[index].rating;
+
+        expect(getRating(0)).to.equal(5);
+        colorsStore.dispatch(
+            colorActions.rateColor('1', 1)
+        );
+        expect(getRating(0)).to.equal(1);
+    });
+
+    it(`dispatches ${C.REMOVE_COLOR} action from colorActions`, () => {
+        const getLength = (index) =>
+            colorsStore.getState().colors.length;
+
+        expect(getLength()).to.equal(4);
+        colorsStore.dispatch(
+            colorActions.removeColor('1')
+        );
+        expect(getLength()).to.equal(3);
+    });
+
+    it(`dispatches ${C.ADD_COLOR} action from colorActions`, () => {
+        const getLength = (index) =>
+            colorsStore.getState().colors.length;
+
+        const color = '#ff1234';
+
+        expect(getLength()).to.equal(3);
+        colorsStore.dispatch(
+            colorActions.addColor('new-title', color)
+        );
+        expect(getLength()).to.equal(4);
     });
 });
