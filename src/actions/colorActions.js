@@ -20,8 +20,25 @@ const addColor = (title, color) => ({
     timeStamp: new Date().toString()
 });
 
+const sortColor = (sortedBy) =>
+    (sortedBy === 'rating') ?
+        ({
+            type: C.SORT_COLORS,
+            sortBy: 'SORTED_BY_RATING'
+        }) :
+        (sortedBy === 'title') ?
+            ({
+                type: C.SORT_COLORS,
+                sortBy: 'SORTED_BY_TITLE'
+            }) :
+            ({
+                type: C.SORT_COLORS,
+                sortBy: 'SORTED_BY_DATE'
+            });
+
 export const colorActions = {
     removeColor,
     rateColor,
-    addColor
+    addColor,
+    sortColor
 };

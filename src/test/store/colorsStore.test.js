@@ -17,6 +17,9 @@ describe('colorsStore', () => {
     it('returns sort', () => {
         expect(colorsStore.getState().sort).to.equal("SORTED_BY_TITLE");
     });
+});
+
+describe('colorsStore with actions', () => {
 
     it(`dispatches ${C.ADD_COLOR}`, () => {
         const getLength = () =>
@@ -84,4 +87,24 @@ describe('colorsStore', () => {
         );
         expect(getLength()).to.equal(4);
     });
+});
+
+describe('colorsStore sort actions', () => {
+    const testSubs = new Map(
+        [
+            ['date', 'SORTED_BY_DATE'],
+            ['title', 'SORTED_BY_TITLE'],
+            ['rating', 'SORTED_BY_RATING']
+        ]
+    );
+
+    for (const [input, expected] of testSubs) {
+        it(`dispatches ${C.SORT_COLORS} action from colorActions ${input} -> ${expected}`, () => {
+            colorsStore.dispatch(
+                colorActions.sortColor(input)
+            );
+
+            expect(colorsStore.getState().sort).to.equal(expected);
+        })
+    }
 });

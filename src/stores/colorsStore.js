@@ -8,7 +8,7 @@ export const colorsStore = createStore(
     colorsFileWithSort
 );
 
-const logState = () =>
-    console.log('new state', colorsStore.getState());
-
-colorsStore.subscribe(logState);
+// const logState = () =>
+//     console.log('new state', colorsStore.getState());
+//
+// colorsStore.subscribe(logState);
