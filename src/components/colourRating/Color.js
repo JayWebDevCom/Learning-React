@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 
 export class Color extends Component {
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.style = {
             backgroundColor: '#CCC'
         }
     }
 
-    componentWillUpdate(nextProps, nextState, nextContext) {
+    UNSAFE_componentWillUpdate(nextProps, nextState, nextContext) {
         this.style = null
     }
 
