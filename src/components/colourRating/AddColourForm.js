@@ -1,11 +1,12 @@
 import React from 'react';
+import {colorActions} from "../../actions/colorActions";
 
-export const AddColourForm = ({onNewColour = f => f}) => {
+export const AddColourForm = ({store}) => {
     let _title, _colour;
 
     const submit = e => {
         e.preventDefault();
-        onNewColour(_title.value, _colour.value);
+        store.dispatch(colorActions.addColor(_title.value, _colour.value));
         _title.value = '';
         _colour.value = '#000000';
         _title.focus()
