@@ -13,7 +13,7 @@ export const AddColourForm = ({store}) => {
     };
 
     return (
-        <form onSubmit={submit}>
+        <form onSubmit={submit} id={'add-color-form'}>
             <input ref={input => _title = input}
                    type='text'
                    placeholder="colour title..." required/>
