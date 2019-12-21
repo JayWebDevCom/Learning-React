@@ -5,6 +5,11 @@ import {expect} from 'chai';
 
 describe('ColorPresenter', () => {
 
+    /*
+    TODO inject store/state to not preserve state across tests
+    TODO inject logging middleware to reduce test logging
+     */
+
     const wrapper = mount(<ColorPresenter/>);
 
     it('displays colors from the store', () => {
@@ -27,5 +32,19 @@ describe('ColorPresenter', () => {
 
         expect(updatedColorList.last().find('h1').first().text()).to.equal("New color name");
         expect(updatedColorList.last().find("div.color").first().props()['style']['backgroundColor']).to.equal('#ff4444');
+    });
+
+    it('removes a specific color on corresponding button click', () => {
+        const colorList = wrapper.find('.color-list').find('section');
+        const length = colorList.length;
+
+        const colorEntryToRemove = colorList.filterWhere(section =>
+            section.find("div.color").first().props()['style']['backgroundColor'] === '#ff4444'
+        );
+
+        colorEntryToRemove.first().find('button').first().simulate('click');
+
+        const updatedColorList = wrapper.find('.color-list').find('section');
+        expect(updatedColorList).to.have.lengthOf(length - 1);
     });
 });
