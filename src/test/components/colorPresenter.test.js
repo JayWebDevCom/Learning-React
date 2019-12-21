@@ -6,9 +6,17 @@ import colorData from "../../components/colourRating/colorsFileWithSort";
 import {quietLogger} from "../../stores/colorStoreFactory";
 
 describe('ColorPresenter', () => {
-
+    let wrapper;
     const state = colorData, logger = quietLogger;
-    const wrapper = mount(ColorPresenter({state, logger}));
+
+    beforeEach(() => {
+        wrapper = mount(ColorPresenter({state, logger}));
+    });
+
+    afterEach(() => {
+        localStorage.clear();
+    });
+
     const testName = 'New color name';
     const testColor = '#ff4444';
 
@@ -44,7 +52,7 @@ describe('ColorPresenter', () => {
         const length = colorList.length;
 
         const colorEntryToRemove = colorList.filterWhere(section =>
-            section.find('div.color').first().props()['style']['backgroundColor'] === testColor
+            section.find('div.color').first().props()['style']['backgroundColor'] === "#00c4e2"
         );
 
         colorEntryToRemove.first().find('button').first().simulate('click');
