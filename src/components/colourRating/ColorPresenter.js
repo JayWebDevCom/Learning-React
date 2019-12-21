@@ -1,19 +1,19 @@
 import React from 'react';
-import colorsFile from "./colorsFileWithSort"
 import {AddColourForm} from "./AddColourForm";
 import {ColorList} from "./ColorList";
 import {storeFactory} from "../../stores/colorStoreFactory";
 
-export const ColorPresenter = () => {
+export const ColorPresenter = (props) => {
 
-    const store = storeFactory(colorsFile);
+    const {state, logger} = props;
+    const store = storeFactory(state, logger);
 
-    store.subscribe(() => console.log('subs called'))
+    // store.subscribe(() => console.log('subs called'));
 
-        return (
-            <div>
-                <AddColourForm store={store}/>
-                <ColorList store={store}/>
-            </div>
-        );
+    return (
+        <div>
+            <AddColourForm store={store}/>
+            <ColorList store={store}/>
+        </div>
+    );
 };

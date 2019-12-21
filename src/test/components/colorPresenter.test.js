@@ -2,15 +2,13 @@ import React from 'react';
 import {ColorPresenter} from '../../components/colourRating/ColorPresenter';
 import {mount} from 'enzyme';
 import {expect} from 'chai';
+import colorData from "../../components/colourRating/colorsFileWithSort";
+import {quietLogger} from "../../stores/colorStoreFactory";
 
 describe('ColorPresenter', () => {
 
-    /*
-    TODO inject store/state to not preserve state across tests
-    TODO inject logging middleware to reduce test logging
-     */
-
-    const wrapper = mount(<ColorPresenter/>);
+    const state = colorData, logger = quietLogger;
+    const wrapper = mount(ColorPresenter({state, logger}));
     const testName = 'New color name';
     const testColor = '#ff4444';
 

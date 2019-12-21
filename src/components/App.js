@@ -12,12 +12,14 @@ import {PeopleListPresenter} from "./peopleList/PeopleListPresenter";
 import {CountryDropdownPresenter} from "./countries/CountryDropdownPresenter";
 import {ExportedPopupButton} from "./hideMessage/MenuButton";
 import CountdownPresenter from "./countdown/CountdownPresenter";
+import colorData from "../components/colourRating/colorsFileWithSort";
+import {quietLogger} from "../stores/colorStoreFactory";
 
 export default () =>
     <Router>
         <Home/>
         <Route exact path="/">
-            <ColorPresenter/>
+            <ColorPresenter state={colorData} logger={quietLogger}/>
         </Route>
         <Route exact path="/clock">
             <Clock/>
