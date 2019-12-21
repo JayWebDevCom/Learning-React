@@ -49,4 +49,26 @@ describe('ColorPresenter', () => {
         const updatedColorList = wrapper.find('.color-list').find('section');
         expect(updatedColorList).to.have.lengthOf(length - 1);
     });
+
+    it('rates a specific color on corresponding star click and displays updated rating', () => {
+        let colorList = wrapper.find('.color-list').find('section');
+        let colorEntryToRate = colorList.first();
+        let ratingDiv = colorEntryToRate.find('div.star-rating').first();
+
+        const totalStars = 5, totalSelectedStars = 3, testRating = 2;
+
+        expect(ratingDiv.find('div.star')).to.have.lengthOf(totalStars);
+        expect(ratingDiv.find('div.selected')).to.have.lengthOf(totalSelectedStars);
+        expect(ratingDiv.find('p').first().text()).to.equal(`${totalSelectedStars} of ${totalStars} stars`);
+
+        ratingDiv.find('div.star').at(1).simulate('click');
+
+        colorList = wrapper.find('.color-list').find('section');
+        colorEntryToRate = colorList.first();
+        ratingDiv = colorEntryToRate.find('div.star-rating').first();
+
+        expect(ratingDiv.find('div.star')).to.have.lengthOf(totalStars);
+        expect(ratingDiv.find('div.selected')).to.have.lengthOf(testRating);
+        expect(ratingDiv.find('p').first().text()).to.equal(`${testRating} of ${totalStars} stars`);
+    });
 });
