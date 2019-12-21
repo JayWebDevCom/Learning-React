@@ -18,7 +18,7 @@ describe('ColorPresenter', () => {
         expect(wrapper.find('.color-list').find('section')).to.have.lengthOf(3);
     });
 
-    it('adds colors', () => {
+    it('adds colors with initial rating information', () => {
         expect(wrapper.find('.color-list').find('section')).to.have.lengthOf(3);
 
         const colorForm = wrapper.find('form#add-color-form');
@@ -32,8 +32,13 @@ describe('ColorPresenter', () => {
         const updatedColorList = wrapper.find('.color-list').find('section');
         expect(updatedColorList).to.have.lengthOf(4);
 
-        expect(updatedColorList.last().find('h1').first().text()).to.equal(testName);
-        expect(updatedColorList.last().find('div.color').first().props()['style']['backgroundColor']).to.equal(testColor);
+        const newColorEntry = updatedColorList.last();
+
+        expect(newColorEntry.find('h1').first().text()).to.equal(testName);
+        expect(newColorEntry.find('div.color').first().props()['style']['backgroundColor']).to.equal(testColor);
+        expect(newColorEntry.find('div.star')).to.have.lengthOf(5);
+        expect(newColorEntry.find('div.selected')).to.have.lengthOf(0);
+        expect(newColorEntry.find('p').first().text()).to.equal('0 of 5 stars');
     });
 
     it('removes a specific color on corresponding button click', () => {
