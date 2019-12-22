@@ -2,12 +2,29 @@ import React from 'react';
 import {ColorPresenter} from '../../components/colourRating/ColorPresenter';
 import {mount} from 'enzyme';
 import {expect} from 'chai';
-import colorData from "../../components/colourRating/colorsFileWithSort";
 import {quietLogger} from "../../stores/colorStoreFactory";
 
 describe('ColorPresenter', () => {
     let wrapper;
-    const state = colorData, logger = quietLogger;
+    const state = {
+        "colors": [
+            {
+                "id": "1",
+                "title": "ocean at dusk",
+                "color": "#00c4e2",
+                "rating": 3
+            },
+            {
+                "id": "2",
+                "title": "ocean at dawn",
+                "color": "#00c4e4",
+                "rating": 4
+            }
+        ],
+        "sort": "SORTED_BY_TITLE"
+    };
+
+    const logger = quietLogger;
 
     beforeEach(() => {
         wrapper = mount(ColorPresenter({state, logger}));
@@ -21,12 +38,10 @@ describe('ColorPresenter', () => {
     const testColor = '#ff4444';
 
     it('displays colors from the store', () => {
-        expect(wrapper.find('.color-list').find('section')).to.have.lengthOf(3);
+        expect(wrapper.find('.color-list').find('section')).to.have.lengthOf(2);
     });
 
     it('adds colors with initial rating information', () => {
-        expect(wrapper.find('.color-list').find('section')).to.have.lengthOf(3);
-
         const colorForm = wrapper.find('form#add-color-form');
         const textInput = colorForm.find("input[type='text']");
         const colorInput = colorForm.find("input[type='color']");
@@ -36,7 +51,7 @@ describe('ColorPresenter', () => {
         colorForm.simulate('submit');
 
         const updatedColorList = wrapper.find('.color-list').find('section');
-        expect(updatedColorList).to.have.lengthOf(4);
+        expect(updatedColorList).to.have.lengthOf(3);
 
         const newColorEntry = updatedColorList.last();
 
