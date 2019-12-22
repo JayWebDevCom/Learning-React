@@ -57,9 +57,7 @@ describe('colors reducer adds colors', () => {
 
         const newArray = [
             {
-                'id': 'test-id',
-                'title': 'bright red',
-                'color': '#ff0000',
+                ...colorsArray[0],
                 'rating': 1
             }
         ];
