@@ -53,7 +53,9 @@ describe('ColorPresenter', () => {
         const updatedColorList = wrapper.find('.color-list').find('section');
         expect(updatedColorList).to.have.lengthOf(3);
 
-        const newColorEntry = updatedColorList.last();
+        const newColorEntry = updatedColorList.filterWhere(section =>
+            section.find('div.color').first().props()['style']['backgroundColor'] === testColor
+        );
 
         expect(newColorEntry.find('h1').first().text()).to.equal(testName);
         expect(newColorEntry.find('div.color').first().props()['style']['backgroundColor']).to.equal(testColor);
