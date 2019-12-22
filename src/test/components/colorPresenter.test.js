@@ -100,11 +100,13 @@ describe('ColorPresenter', () => {
         expect(ratingDiv.find('p').first().text()).to.equal(`${testRating} of ${totalStars} stars`);
     });
 
-    it('updates style property value of color section on a rate action', () => {
+    it('updates style property value of color section on a rate change action', () => {
         let colorSection = wrapper.find('.color-list').find('section').first();
         expect(colorSection.props()['style']['backgroundColor']).to.equal('#CCC');
 
         colorSection.find('div.star').first().simulate('click');
-        expect(wrapper.find('.color-list').find('section').first().props()['style']).to.equal(null);
+
+        const updatedColorSection = wrapper.find('.color-list').find('section').first();
+        expect(updatedColorSection.props()['style']).to.equal(null);
     });
 });
