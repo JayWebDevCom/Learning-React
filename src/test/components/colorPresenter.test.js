@@ -109,4 +109,20 @@ describe('ColorPresenter', () => {
         const updatedColorSection = wrapper.find('.color-list').find('section').first();
         expect(updatedColorSection.props()['style']).to.equal(null);
     });
+
+    it('will not update the style property value of color section on a rating of the same value', () => {
+        let colorSection = wrapper.find('.color-list').find('section').first();
+        expect(colorSection.props()['style']['backgroundColor']).to.equal('#CCC');
+
+        const ratingDiv = colorSection.find('div.star-rating');
+        expect(ratingDiv.find('div.star')).to.have.lengthOf(5);
+
+        const currentRating = ratingDiv.find('div.selected');
+        expect(currentRating).to.have.lengthOf(3);
+
+        ratingDiv.find('div.star').at(currentRating.length - 1).simulate('click');
+
+        const updatedColorSection = wrapper.find('.color-list').find('section').first();
+        expect(updatedColorSection.props()['style']['backgroundColor']).to.equal('#CCC');
+    });
 });
