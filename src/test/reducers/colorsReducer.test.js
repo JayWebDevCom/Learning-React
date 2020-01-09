@@ -1,6 +1,7 @@
 import C from '../../../src/constants/constants'
 import {colors} from "../../../src/reducers/colorsReducer";
 import {expect} from 'chai';
+import deepFreeze from 'deep-freeze';
 
 describe('colors reducer adds colors', () => {
 
@@ -12,16 +13,18 @@ describe('colors reducer adds colors', () => {
             'rating': 5
         }
     ];
-
-    const action = {
-        type: C.ADD_COLOR,
-        id: 'new-test-id',
-        title: 'Party Pink',
-        color: 'F142FF',
-        timestamp: '2019-12-03T07:51:45.017Z'
-    };
+    deepFreeze(colorsArray);
 
     it('adds a new color', () => {
+
+        const action = {
+            type: C.ADD_COLOR,
+            id: 'new-test-id',
+            title: 'Party Pink',
+            color: 'F142FF',
+            timestamp: '2019-12-03T07:51:45.017Z'
+        };
+        deepFreeze(action);
 
         const newArray = [
             ...colorsArray,
@@ -43,6 +46,7 @@ describe('colors reducer adds colors', () => {
             type: C.REMOVE_COLOR,
             id: 'test-id'
         };
+        deepFreeze(action);
 
         expect(colors(colorsArray, action)).to.eql([]);
     });
@@ -54,6 +58,7 @@ describe('colors reducer adds colors', () => {
             id: 'test-id',
             rating: 1
         };
+        deepFreeze(action);
 
         const newArray = [
             {
