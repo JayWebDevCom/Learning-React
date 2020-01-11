@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 
 export const Expandable = ComposedComponent =>
-    class Expandable extends Component {
+    class extends Component {
 
         constructor(props) {
             super(props);
-            
-            const collapsed = !!(props.hidden && props.hidden === true);
+
+            let collapsed = (typeof props.collapsed === 'boolean') ? props.collapsed : true;
             this.state = {collapsed};
-            this.expandCollapse = this.expandCollapse.bind(this);
+            this.expandCollapse = this.expandCollapse.bind(this)
         }
 
         expandCollapse = () => {
