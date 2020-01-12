@@ -25,7 +25,7 @@ describe('Expandable', () => {
 
         it('passes additional props to composed component', () => {
             expect(props.foo).toBe('foo');
-            expect(props.foo).toBe('foo');
+            expect(props.bar).toBe('bar');
         });
     });
 
