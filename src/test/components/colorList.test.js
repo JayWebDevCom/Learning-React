@@ -6,18 +6,9 @@ import colorsFile from '../../components/colourRating/colorsFile'
 
 const testColors = deepFreeze(colorsFile.colors);
 
-jest.mock('../../components/colourRating/Color', () => {
+jest.mock('../../components/colourRating/Color');
 
-    const Color = ({rating, onRate = f => f}) =>
-        <div className={'mock-color'}>
-            <button className={'rate'} onClick={() => onRate(rating)}/>
-        </div>;
-
-    return {Color};
-
-});
-
-describe('ColorList', () => {
+describe('ColorList component', () => {
 
     describe('Rating a colour', () => {
 
@@ -38,5 +29,7 @@ describe('ColorList', () => {
             expect(testRate).toBeCalledWith("1", 3)
         });
     });
+
+
 });
 
