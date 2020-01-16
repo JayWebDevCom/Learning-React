@@ -32,5 +32,41 @@ describe('Colors component', () => {
             .length
         ).toBe(3)
     });
+
+    it('renders colour details', () => {
+        expect(wrapper
+            .find('ColorListMock')
+            .props()
+            .colors[0]
+            .title
+        ).toBe('ocean at dusk')
+    });
+
+    afterEach(() => jest.resetAllMocks());
+
+    it('dispatches a RATE_COLOR action', () => {
+        wrapper.find('ColorListMock')
+            .props()
+            .onRate('3', 1);
+
+        expect(testStore.dispatch.mock.calls[0][0])
+            .toEqual({
+                id: '3',
+                type: 'RATE_COLOR',
+                rating: 1
+            })
+    });
+
+    it('dispatches a REMOVE_COLOR action', () => {
+        wrapper.find('ColorListMock')
+            .props()
+            .onRemove('2');
+
+        expect(testStore.dispatch.mock.calls[0][0])
+            .toEqual({
+                id: '2',
+                type: 'REMOVE_COLOR'
+            })
+    });
 });
 
