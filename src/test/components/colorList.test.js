@@ -25,7 +25,7 @@ describe('ColorList component', () => {
             expect(testRate).toBeCalled()
         });
 
-        it('invokes onRate handler ', () => {
+        it('invokes onRate handler with arguments', () => {
             expect(testRate).toBeCalledWith("1", 3)
         });
     });
