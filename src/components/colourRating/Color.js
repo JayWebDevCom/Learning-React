@@ -22,7 +22,7 @@ export class Color extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         const {title, rating} = this.props;
         const status = (rating > prevProps.rating) ? 'better' : 'worse' ;
-        console.log(`${title} is getting a ${status}`)
+        console.log(`${title} is getting a ${status} status`)
     }
 
     render() {
