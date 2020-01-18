@@ -18,4 +18,9 @@ npm run dev
 npm test
 ```
 
+- To run the tests with coverage:
+```bash
+npm test -- --coverage --coverageDirectory=coverage/jest --watchAll=false [dir[file]]
+```
+
 Follow the links to explore each learning topic
