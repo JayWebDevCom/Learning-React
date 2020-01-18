@@ -1,6 +1,6 @@
 import React from 'react';
 import {TestableColorList} from './testableColorList';
-import {mount} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 import deepFreeze from "deep-freeze";
 import colorsFile from '../../components/colourRating/colorsFile'
 
@@ -44,6 +44,15 @@ describe('ColorList component', () => {
         it('invokes onRemove handler ', () => {
             expect(testRate).toBeCalled()
         });
+    });
+
+    describe('Defaults properties correctly', () => {
+        it('with correct text', () => {
+            expect(shallow(<TestableColorList/>)
+                .find('p')
+                .text())
+                .toBe('No Colors Listed. (Add a Color)')
+        })
     });
 });
 
