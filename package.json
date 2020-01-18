@@ -45,6 +45,7 @@
     "deep-freeze": "0.0.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
     "react-addons-test-utils": "^15.6.2"
   }
 }

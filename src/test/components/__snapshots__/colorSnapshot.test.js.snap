@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Color /> Snapshot renders correct props 1`] = `
+<section
+  className="color"
+  style={
+    Object {
+      "backgroundColor": "#CCC",
+    }
+  }
+>
+  <h1>
+    color test
+  </h1>
+  <button
+    onClick={[Function]}
+  >
+    X
+  </button>
+  <div
+    className="color"
+    style={
+      Object {
+        "backgroundColor": "#R4R4R4",
+      }
+    }
+  />
+  <div>
+    <StarRating
+      onRate={[Function]}
+      starsSelected={3}
+    />
+  </div>
+</section>
+`;
