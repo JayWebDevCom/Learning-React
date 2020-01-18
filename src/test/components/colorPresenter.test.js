@@ -5,124 +5,136 @@ import {expect} from 'chai';
 import {quietLogger} from "../../stores/colorStoreFactory";
 
 describe('ColorPresenter', () => {
-    let wrapper;
-    const state = {
-        "colors": [
-            {
-                "id": "1",
-                "title": "ocean at dusk",
-                "color": "#00c4e2",
-                "rating": 3
-            },
-            {
-                "id": "2",
-                "title": "ocean at dawn",
-                "color": "#00c4e4",
-                "rating": 4
-            }
-        ],
-        "sort": "SORTED_BY_TITLE"
-    };
-
     const logger = quietLogger;
+    let wrapper;
 
-    beforeEach(() => {
-        wrapper = mount(ColorPresenter({state, logger}));
+    describe('Empty colours', () => {
+        const noColors = {"colors": [], "sort": "SORTED_BY_TITLE"};
+        wrapper = mount(ColorPresenter({noColors, logger}));
+
+        it('displays no colours listed text', () => {
+            expect(wrapper.find('p').text()).to.equal('No Colours Listed. (Add a Color)');
+        });
     });
 
-    afterEach(() => {
-        localStorage.clear();
-    });
+    describe('With colours', () => {
 
-    const testName = 'New color name';
-    const testColor = '#ff4444';
+        const state = {
+            "colors": [
+                {
+                    "id": "1",
+                    "title": "ocean at dusk",
+                    "color": "#00c4e2",
+                    "rating": 3
+                },
+                {
+                    "id": "2",
+                    "title": "ocean at dawn",
+                    "color": "#00c4e4",
+                    "rating": 4
+                }
+            ],
+            "sort": "SORTED_BY_TITLE"
+        };
 
-    it('displays colors from the store', () => {
-        expect(wrapper.find('.color-list').find('section')).to.have.lengthOf(2);
-    });
+        beforeEach(() => {
+            wrapper = mount(ColorPresenter({state, logger}));
+        });
 
-    it('adds colors with initial rating information', () => {
-        const colorForm = wrapper.find('form#add-color-form');
-        const textInput = colorForm.find("input[type='text']");
-        const colorInput = colorForm.find("input[type='color']");
+        afterEach(() => {
+            localStorage.clear();
+        });
 
-        textInput.instance().value = testName;
-        colorInput.instance().value = testColor;
-        colorForm.simulate('submit');
+        const testName = 'New color name';
+        const testColor = '#ff4444';
 
-        const updatedColorList = wrapper.find('.color-list').find('section');
-        expect(updatedColorList).to.have.lengthOf(3);
+        it('displays colors from the store', () => {
+            expect(wrapper.find('.color-list').find('section')).to.have.lengthOf(2);
+        });
 
-        const newColorEntry = updatedColorList.filterWhere(section =>
-            section.find('div.color').first().props()['style']['backgroundColor'] === testColor
-        );
+        it('adds colors with initial rating information', () => {
+            const colorForm = wrapper.find('form#add-color-form');
+            const textInput = colorForm.find("input[type='text']");
+            const colorInput = colorForm.find("input[type='color']");
 
-        expect(newColorEntry.find('h1').first().text()).to.equal(testName);
-        expect(newColorEntry.find('div.color').first().props()['style']['backgroundColor']).to.equal(testColor);
-        expect(newColorEntry.find('div.star')).to.have.lengthOf(5);
-        expect(newColorEntry.find('div.selected')).to.have.lengthOf(0);
-        expect(newColorEntry.find('p').first().text()).to.equal('0 of 5 stars');
-    });
+            textInput.instance().value = testName;
+            colorInput.instance().value = testColor;
+            colorForm.simulate('submit');
 
-    it('removes a specific color on corresponding button click', () => {
-        const colorList = wrapper.find('.color-list').find('section');
-        const length = colorList.length;
+            const updatedColorList = wrapper.find('.color-list').find('section');
+            expect(updatedColorList).to.have.lengthOf(3);
 
-        const colorEntryToRemove = colorList.filterWhere(section =>
-            section.find('div.color').first().props()['style']['backgroundColor'] === "#00c4e2"
-        );
+            const newColorEntry = updatedColorList.filterWhere(section =>
+                section.find('div.color').first().props()['style']['backgroundColor'] === testColor
+            );
 
-        colorEntryToRemove.first().find('button.remove').simulate('click');
+            expect(newColorEntry.find('h1').first().text()).to.equal(testName);
+            expect(newColorEntry.find('div.color').first().props()['style']['backgroundColor']).to.equal(testColor);
+            expect(newColorEntry.find('div.star')).to.have.lengthOf(5);
+            expect(newColorEntry.find('div.selected')).to.have.lengthOf(0);
+            expect(newColorEntry.find('p').first().text()).to.equal('0 of 5 stars');
+        });
 
-        const updatedColorList = wrapper.find('.color-list').find('section');
-        expect(updatedColorList).to.have.lengthOf(length - 1);
-    });
+        it('removes a specific color on corresponding button click', () => {
+            const colorList = wrapper.find('.color-list').find('section');
+            const length = colorList.length;
 
-    it('rates a specific color on corresponding star click and displays updated rating', () => {
-        let colorList = wrapper.find('.color-list').find('section');
-        let colorEntryToRate = colorList.first();
-        let ratingDiv = colorEntryToRate.find('div.star-rating').first();
+            const colorEntryToRemove = colorList.filterWhere(section =>
+                section.find('div.color').first().props()['style']['backgroundColor'] === "#00c4e2"
+            );
 
-        const totalStars = 5, totalSelectedStars = 3, testRating = 2;
+            colorEntryToRemove.first().find('button.remove').simulate('click');
 
-        expect(ratingDiv.find('div.star')).to.have.lengthOf(totalStars);
-        expect(ratingDiv.find('div.selected')).to.have.lengthOf(totalSelectedStars);
-        expect(ratingDiv.find('p').first().text()).to.equal(`${totalSelectedStars} of ${totalStars} stars`);
+            const updatedColorList = wrapper.find('.color-list').find('section');
+            expect(updatedColorList).to.have.lengthOf(length - 1);
+        });
 
-        ratingDiv.find('div.star').at(1).simulate('click');
+        it('rates a specific color on corresponding star click and displays updated rating', () => {
+            let colorList = wrapper.find('.color-list').find('section');
+            let colorEntryToRate = colorList.first();
+            let ratingDiv = colorEntryToRate.find('div.star-rating').first();
 
-        colorList = wrapper.find('.color-list').find('section');
-        colorEntryToRate = colorList.first();
-        ratingDiv = colorEntryToRate.find('div.star-rating').first();
+            const totalStars = 5, totalSelectedStars = 3, testRating = 2;
 
-        expect(ratingDiv.find('div.star')).to.have.lengthOf(totalStars);
-        expect(ratingDiv.find('div.selected')).to.have.lengthOf(testRating);
-        expect(ratingDiv.find('p').first().text()).to.equal(`${testRating} of ${totalStars} stars`);
-    });
+            expect(ratingDiv.find('div.star')).to.have.lengthOf(totalStars);
+            expect(ratingDiv.find('div.selected')).to.have.lengthOf(totalSelectedStars);
+            expect(ratingDiv.find('p').first().text()).to.equal(`${totalSelectedStars} of ${totalStars} stars`);
 
-    it('updates style property value of color section on a rate change action', () => {
-        let colorSection = wrapper.find('.color-list').find('section').first();
-        expect(colorSection.props()['style']['backgroundColor']).to.equal('#CCC');
+            ratingDiv.find('div.star').at(1).simulate('click');
 
-        colorSection.find('div.star').first().simulate('click');
+            colorList = wrapper.find('.color-list').find('section');
+            colorEntryToRate = colorList.first();
+            ratingDiv = colorEntryToRate.find('div.star-rating').first();
 
-        const updatedColorSection = wrapper.find('.color-list').find('section').first();
-        expect(updatedColorSection.props()['style']).to.equal(null);
-    });
+            expect(ratingDiv.find('div.star')).to.have.lengthOf(totalStars);
+            expect(ratingDiv.find('div.selected')).to.have.lengthOf(testRating);
+            expect(ratingDiv.find('p').first().text()).to.equal(`${testRating} of ${totalStars} stars`);
+        });
 
-    it('will not update the style property value of color section on a rating of the same value', () => {
-        let colorSection = wrapper.find('.color-list').find('section').first();
-        expect(colorSection.props()['style']['backgroundColor']).to.equal('#CCC');
+        it('updates style property value of color section on a rate change action', () => {
+            let colorSection = wrapper.find('.color-list').find('section').first();
+            expect(colorSection.props()['style']['backgroundColor']).to.equal('#CCC');
 
-        const ratingDiv = colorSection.find('div.star-rating');
-        expect(ratingDiv.find('div.star')).to.have.lengthOf(5);
+            colorSection.find('div.star').first().simulate('click');
 
-        const currentRating = ratingDiv.find('div.selected');
-        expect(currentRating).to.have.lengthOf(3);
+            const updatedColorSection = wrapper.find('.color-list').find('section').first();
+            expect(updatedColorSection.props()['style']).to.equal(null);
+        });
 
-        ratingDiv.find('div.star').at(currentRating.length - 1).simulate('click');
+        it('will not update the style property value of color section on a rating of the same value', () => {
+            let colorSection = wrapper.find('.color-list').find('section').first();
+            expect(colorSection.props()['style']['backgroundColor']).to.equal('#CCC');
 
-        const updatedColorSection = wrapper.find('.color-list').find('section').first();
-        expect(updatedColorSection.props()['style']['backgroundColor']).to.equal('#CCC');
+            const ratingDiv = colorSection.find('div.star-rating');
+            expect(ratingDiv.find('div.star')).to.have.lengthOf(5);
+
+            const currentRating = ratingDiv.find('div.selected');
+            expect(currentRating).to.have.lengthOf(3);
+
+            ratingDiv.find('div.star').at(currentRating.length - 1).simulate('click');
+
+            const updatedColorSection = wrapper.find('.color-list').find('section').first();
+            expect(updatedColorSection.props()['style']['backgroundColor']).to.equal('#CCC');
+        });
     });
 });
