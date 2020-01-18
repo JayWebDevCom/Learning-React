@@ -25,6 +25,12 @@
     "eject": "react-scripts eject",
     "dev": "nodemon index.js"
   },
+  "jest": {
+    "coverageReporters": [
+      "text",
+      "cobertura"
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
