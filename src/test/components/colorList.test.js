@@ -30,6 +30,20 @@ describe('ColorList component', () => {
         });
     });
 
+    describe('Removing a colour', () => {
 
+        let testRate = jest.fn();
+
+        beforeAll(() => {
+            mount(<TestableColorList colors={testColors} onRemove={testRate}/>)
+                .find('button.remove')
+                .first()
+                .simulate('click')
+        });
+
+        it('invokes onRemove handler ', () => {
+            expect(testRate).toBeCalled()
+        });
+    });
 });
 

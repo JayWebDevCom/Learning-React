@@ -13,6 +13,7 @@ exports[`<Color /> Snapshot renders correct props 1`] = `
     color test
   </h1>
   <button
+    className="remove"
     onClick={[Function]}
   >
     X
