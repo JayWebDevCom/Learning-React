@@ -72,7 +72,7 @@ describe('ColorPresenter', () => {
             section.find('div.color').first().props()['style']['backgroundColor'] === "#00c4e2"
         );
 
-        colorEntryToRemove.first().find('button').first().simulate('click');
+        colorEntryToRemove.first().find('button.remove').simulate('click');
 
         const updatedColorList = wrapper.find('.color-list').find('section');
         expect(updatedColorList).to.have.lengthOf(length - 1);

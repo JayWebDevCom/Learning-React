@@ -30,7 +30,7 @@ export class Color extends Component {
         return (
             <section className={'color'} style={this.style}>
                 <h1 ref={"title"}>{title}</h1>
-                <button onClick={onRemove}>X</button>
+                <button className={'remove'} onClick={onRemove}>X</button>
                 <div className={'color'}
                      style={{backgroundColor: color}}
                 >
