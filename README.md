@@ -1,7 +1,7 @@
 ### Learning React : Functional Web Development with React and Redux
 #### Alex Banks & Eve Porcello
 
-![badge](https://action-badges.now.sh/jaywebdevcom/learning-react)
+![](https://github.com/JayWebDevCom/learning-react/workflows/Node%20CI/badge.svg)
 
 - To install dependencies
 ```bash
